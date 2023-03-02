@@ -27,6 +27,11 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	JButton save, cancel;
 	EmployeeDetails parent;
+	
+	private static AddRecordDialog instance=null;
+
+		
+	
 	// constructor for add record dialog
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
@@ -44,6 +49,13 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		setLocation(350, 250);
 		setVisible(true);
 	}// end AddRecordDialog
+	
+	  public static AddRecordDialog getInstance(EmployeeDetails parent) {
+	        if (instance == null) {
+	            instance = new AddRecordDialog(parent);
+	        }
+	        return instance;
+	    }
 
 	// initialize dialog container
 	public Container dialogPane() {
@@ -125,48 +137,156 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	public boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
-		if (ppsField.getText().equals("")) {
+//		if (ppsField.getText().equals("")) {
+//			ppsField.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+//		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
+//			ppsField.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		if(!pps()) {
+			valid = false;
+		}
+		
+//		if (surnameField.getText().isEmpty()) {
+//			surnameField.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		if(!surname()) {
+			valid = false;
+		}
+		
+		
+//		if (firstNameField.getText().isEmpty()) {
+//			firstNameField.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		if(!firstName()) {
+			valid = false;
+		}
+	
+		
+//		if (genderCombo.getSelectedIndex() == 0) {
+//			genderCombo.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		if(!gender()) {
+			valid = false;
+		}
+		
+//		if (departmentCombo.getSelectedIndex() == 0) {
+//			departmentCombo.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		
+		if(!department()) {
+			valid = false;
+		}
+		
+		
+//		try {// try to get values from text field
+//			Double.parseDouble(salaryField.getText());
+//			// check if salary is greater than 0
+//			if (Double.parseDouble(salaryField.getText()) < 0) {
+//				salaryField.setBackground(new Color(255, 150, 150));
+//				valid = false;
+//			}// end if
+//		}// end try
+//		catch (NumberFormatException num) {
+//			salaryField.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end catchs
+		
+		if(!salary()) {
+			valid = false;
+		}
+		
+//		if (fullTimeCombo.getSelectedIndex() == 0) {
+//			fullTimeCombo.setBackground(new Color(255, 150, 150));
+//			valid = false;
+//		}// end if
+		
+		if(!fullTime()) {
+			valid = false;
+		}
+		return valid;
+	}// end checkInput
+	
+	
+	/*Start of methods to be called in checkInput */
+	public boolean pps() {
+		// if any of inputs are in wrong format, colour text field and display message
+		if(ppsField.getText().equals("")||this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
 			ppsField.setBackground(new Color(255, 150, 150));
-			valid = false;
+			return false;
 		}// end if
-		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(new Color(255, 150, 150));
-			valid = false;
+		
+		return true;
+	}
+	
+	public boolean surname() {
+		// if any of inputs are in wrong format, colour text field and display message
+		if(surnameField.getText().isEmpty()) {
+			surnameField.setBackground(new Color(255, 150, 150));			
+			return false;
 		}// end if
-		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
-			valid = false;
+		return true;
+	}
+
+	public boolean firstName() {
+		// if any of inputs are in wrong format, colour text field and display message
+		if(firstNameField.getText().isEmpty()) {
+			firstNameField.setBackground(new Color(255, 150, 150));			
+			return false;
 		}// end if
-		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
-			valid = false;
+		return true;
+	}
+	
+	public boolean gender() {
+		// if any of inputs are in wrong format, colour text field and display message
+		if(genderCombo.getSelectedIndex() == 0) {
+			genderCombo.setBackground(new Color(255, 150, 150));			
+			return false;
 		}// end if
-		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(new Color(255, 150, 150));
-			valid = false;
+		return true;
+	}
+	
+	public boolean department() {
+		// if any of inputs are in wrong format, colour text field and display message
+		if(departmentCombo.getSelectedIndex() == 0) {
+			departmentCombo.setBackground(new Color(255, 150, 150));			
+			return false;
 		}// end if
-		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
-			valid = false;
-		}// end if
+		return true;
+	}
+	
+	public boolean salary() {
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
 				salaryField.setBackground(new Color(255, 150, 150));
-				valid = false;
+				return false;
 			}// end if
 		}// end try
 		catch (NumberFormatException num) {
 			salaryField.setBackground(new Color(255, 150, 150));
-			valid = false;
-		}// end catch
+			return false;
+		}// end catchs
+		return true;
+		
+	}
+	
+	public boolean fullTime() {
 		if (fullTimeCombo.getSelectedIndex() == 0) {
 			fullTimeCombo.setBackground(new Color(255, 150, 150));
-			valid = false;
+			return false;
 		}// end if
-		return valid;
-	}// end checkInput
+		
+		return true;
+	}
+	
 
 	// set text field to white colour
 	public void setToWhite() {

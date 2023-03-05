@@ -137,75 +137,32 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	public boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
-//		if (ppsField.getText().equals("")) {
-//			ppsField.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
-//		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-//			ppsField.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
+
 		if(!pps()) {
 			valid = false;
 		}
 		
-//		if (surnameField.getText().isEmpty()) {
-//			surnameField.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
 		if(!surname()) {
 			valid = false;
 		}
 		
-		
-//		if (firstNameField.getText().isEmpty()) {
-//			firstNameField.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
 		if(!firstName()) {
 			valid = false;
 		}
-	
 		
-//		if (genderCombo.getSelectedIndex() == 0) {
-//			genderCombo.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
 		if(!gender()) {
 			valid = false;
 		}
 		
-//		if (departmentCombo.getSelectedIndex() == 0) {
-//			departmentCombo.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
-		
 		if(!department()) {
 			valid = false;
 		}
-		
-		
-//		try {// try to get values from text field
-//			Double.parseDouble(salaryField.getText());
-//			// check if salary is greater than 0
-//			if (Double.parseDouble(salaryField.getText()) < 0) {
-//				salaryField.setBackground(new Color(255, 150, 150));
-//				valid = false;
-//			}// end if
-//		}// end try
-//		catch (NumberFormatException num) {
-//			salaryField.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end catchs
-		
+			
 		if(!salary()) {
 			valid = false;
 		}
 		
-//		if (fullTimeCombo.getSelectedIndex() == 0) {
-//			fullTimeCombo.setBackground(new Color(255, 150, 150));
-//			valid = false;
-//		}// end if
+
 		
 		if(!fullTime()) {
 			valid = false;

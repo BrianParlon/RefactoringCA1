@@ -160,9 +160,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		if(!salary()) {
 			valid = false;
 		}
-		
-
-		
+				
 		if(!fullTime()) {
 			valid = false;
 		}

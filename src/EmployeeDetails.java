@@ -624,12 +624,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// check if any of records in file is active - ID is not 0
 	private boolean isSomeoneToDisplay() {
-		boolean someoneToDisplay = false;
-		// open file for reading
-		application.openReadFile(file.getAbsolutePath());
-		// check if any of records in file is active - ID is not 0
-		someoneToDisplay = application.isSomeoneToDisplay();
-		application.closeReadFile();// close file for reading
+
+		//if any records exist, they will be displayed
+		boolean someoneToDisplay = application.isSomeoneToDisplay();
+		//close file
+		application.closeReadFile();
+
 		// if no records found clear all text fields and display message
 		if (!someoneToDisplay) {
 			currentEmployee = null;
@@ -642,8 +642,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			departmentCombo.setSelectedIndex(0);
 			fullTimeCombo.setSelectedIndex(0);
 			JOptionPane.showMessageDialog(null, "No Employees registered!");
+			return false;
 		}
-		return someoneToDisplay;
+		return true;
 	}// end isSomeoneToDisplay
 
 	// check for correct PPS format and look if PPS already in use

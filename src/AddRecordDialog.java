@@ -29,7 +29,6 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	EmployeeDetails parent;
 	
 	private static AddRecordDialog instance=null;
-
 		
 	
 	// constructor for add record dialog
